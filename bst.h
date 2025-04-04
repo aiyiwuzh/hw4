@@ -251,8 +251,6 @@ protected:
     void helper_for_clearing(Node<Key, Value>* n);
     int get_height(Node<Key, Value>* n) const; 
      
-
-
 protected:
     Node<Key, Value>* root_;
     // You should not need other data members
@@ -492,17 +490,17 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
     }
 
     // insert the new node at the correct point by comparing key with the parent key 
-    Node<Key, Value>* newNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, nullptr);
-    if (keyValuePair.first > parent->getKey())
-    {
-        parent->setRight(newNode);
-    }
-    else if (keyValuePair.first < parent->getKey())
+    Node<Key, Value>* newNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, parent);
+   if (keyValuePair.first < parent->getKey())
     {
         parent->setLeft(newNode);
     }
+    else
+    {
+        parent->setRight(newNode);
+    }
 
-    newNode->setParent(parent); 
+    newNode->setParent(parent);  
 
 }
 
@@ -585,6 +583,9 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
             parent->setRight(child); 
         }
     }
+    target->setLeft(nullptr);
+    target->setRight(nullptr);
+    target->setParent(nullptr);
     delete target; 
 }
 
