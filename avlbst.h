@@ -306,11 +306,11 @@ void AVLTree<Key, Value>::remove(const Key& key)
         }
     }
     
-    // delete the node and update pointers 
-    delete node;
+    // delete the node and update pointers
     node->setLeft(nullptr);
     node->setRight(nullptr);
-    node->setParent(nullptr);
+    node->setParent(nullptr); 
+    delete node;
 
     // patch the tree
     removeFix(parent, diff);
