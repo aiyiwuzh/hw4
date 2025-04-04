@@ -2,4 +2,7 @@ hw4_tests/
 bst-test
 equal-paths-test
 *.o
+avl
+hw4_tests.tar.gz.1
+hw4_tests.tar.gz.2
 
